@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Rumbo | Empezá a respirar profundo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --marino: #121C2A;
+            --pizarra: #658BA9;
+            --offwhite: #F6F7F9;
+            --mostaza: #E6BF68;
+            --marron: #B27C44;
+            --font-title: 'Outfit', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+            --shadow-soft: 0 12px 24px rgba(101, 139, 169, 0.08);
+            --shadow-strong: 0 16px 32px rgba(18, 28, 42, 0.12);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-pill: 999px;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background-color: #ffffff; color: var(--marino); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: var(--font-title); font-weight: 600; line-height: 1.15; margin-bottom: 1rem; }
+        p { font-size: 1.125rem; margin-bottom: 1.2rem; opacity: 0.85; }
+        img { max-width: 100%; height: auto; display: block; border-radius: var(--radius-md); }
+
+        /* ESPACIOS REDUCIDOS */
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; padding: 4rem 0; }
+        .text-center { text-align: center; }
+        .tag { display: inline-block; background: rgba(101, 139, 169, 0.15); color: var(--pizarra); font-weight: 700; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: var(--radius-pill); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.2rem; }
+        
+        .btn { display: inline-flex; align-items: center; justify-content: center; background-color: var(--mostaza); color: var(--marino); font-weight: 700; font-size: 1.15rem; text-decoration: none; padding: 1rem 2.2rem; border-radius: var(--radius-pill); transition: var(--transition); border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(230, 191, 104, 0.3); }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(230, 191, 104, 0.5); }
+        
+        /* HERO SECTION */
+        .hero { display: flex; min-height: 90vh; background-color: var(--offwhite); }
+        .hero-content { flex: 1; padding: 4rem 5% 4rem 10%; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
+        .hero h1 { font-size: clamp(2.8rem, 5vw, 4rem); color: var(--marino); letter-spacing: -1px; }
+        .hero p { font-size: 1.15rem; max-width: 500px; }
+        
+        .hero-visuals { flex: 1.2; position: relative; }
+        .hero-bg-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; border-bottom-left-radius: 60px; }
+        
+        /* CSS MOCKUP BUNDLE */
+        .css-bundle { position: absolute; bottom: 8%; left: -15%; width: 70%; max-width: 450px; transform: rotate(-3deg); transition: var(--transition); z-index: 20; }
+        .css-bundle:hover { transform: rotate(0deg) scale(1.02); }
+        
+        .css-tablet { background: var(--offwhite); border: 12px solid var(--marino); border-radius: 20px; height: 280px; width: 100%; box-shadow: var(--shadow-strong); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .css-tablet-header { background: #fff; padding: 1rem; border-bottom: 1px solid rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .css-tablet-header span { font-weight: 700; font-size: 0.9rem; color: var(--pizarra); }
+        .css-tablet-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+        .css-bar { height: 12px; background: rgba(101, 139, 169, 0.2); border-radius: 8px; width: 100%; }
+        .css-bar-fill { height: 100%; background: var(--mostaza); border-radius: 8px; width: 60%; }
+        .css-task { background: #fff; padding: 0.8rem; border-radius: 8px; display: flex; gap: 1rem; align-items: center; border: 1px solid rgba(0,0,0,0.05); }
+        .css-check { width: 16px; height: 16px; border-radius: 4px; border: 2px solid var(--mostaza); }
+        .css-check.active { background: var(--mostaza); }
+        .css-line { height: 8px; background: rgba(18,28,42,0.1); border-radius: 4px; width: 70%; }
+        
+        .css-mobile { position: absolute; right: -20px; bottom: -20px; width: 140px; height: 260px; background: #fff; border: 10px solid var(--marino); border-radius: 24px; box-shadow: var(--shadow-strong); display: flex; flex-direction: column; overflow: hidden; }
+        .css-mobile-header { background: var(--marino); color: #fff; text-align: center; font-size: 0.7rem; padding: 0.5rem; font-weight: 600; }
+        .css-chat { padding: 0.8rem; display: flex; flex-direction: column; gap: 0.5rem; }
+        .css-bubble-left { background: var(--offwhite); padding: 0.5rem; border-radius: 8px 8px 8px 0; font-size: 0.5rem; color: var(--pizarra); width: 80%; }
+        .css-bubble-right { background: var(--mostaza); padding: 0.5rem; border-radius: 8px 8px 0 8px; font-size: 0.5rem; color: var(--marino); font-weight: 600; width: 85%; align-self: flex-end; }
+
+        /* AGITACIÓN */
+        .agitation { padding: 5rem 0; background-color: #fff; }
+        .agitation-header { max-width: 800px; margin: 0 auto 4rem auto; text-align: center; }
+        .agitation-header h2 { font-size: clamp(2.2rem, 4vw, 3rem); color: var(--marino); }
+        
+        .staggered-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: flex-start; }
+        .staggered-card { background: var(--offwhite); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); transition: var(--transition); border-top: 4px solid transparent; }
+        .staggered-card:nth-child(2) { transform: translateY(2rem); }
+        .staggered-card:hover { transform: translateY(-5px); border-top-color: var(--pizarra); background: #fff; }
+        .icon-box { width: 50px; height: 50px; border-radius: 12px; background: #fff; color: var(--pizarra); display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; box-shadow: var(--shadow-soft); }
+
+        /* LA PIZZA */
+        .pizza-section { background-color: var(--offwhite); border-radius: var(--radius-lg); padding: 4rem 3rem; margin: 4rem auto; position: relative; width: 90%; max-width: 1100px; }
+        .pizza-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .pizza-text h2 { font-size: 2.8rem; }
+        .pizza-text .highlight { color: var(--marron); }
+        .pizza-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .slice-card { padding: 1.5rem; background: #fff; border-radius: var(--radius-md); border-left: 4px solid var(--pizarra); transition: var(--transition); box-shadow: var(--shadow-soft); }
+        .slice-card:hover { transform: translateY(-3px); border-left-color: var(--mostaza); }
+        .slice-card h4 { margin-bottom: 0.3rem; font-size: 1.05rem; }
+        .slice-card p { font-size: 0.9rem; margin-bottom: 0; }
+
+        /* CORE PRODUCT + BONOS */
+        .offer-stack { padding: 5rem 0; background: #fff; }
+        .stack-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 3rem; }
+        
+        .core-features h2 { font-size: 2.5rem; margin-bottom: 2.5rem; }
+        .feature-item { display: flex; gap: 1.2rem; margin-bottom: 2rem; }
+        .feature-icon { flex-shrink: 0; width: 45px; height: 45px; background: var(--pizarra); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: bold; }
+        .feature-item h3 { font-size: 1.2rem; margin-bottom: 0.3rem; }
+        .feature-item p { font-size: 1rem; }
+        
+        .bonuses-box { background: var(--marino); color: #fff; padding: 2.5rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-strong); }
+        .bonuses-box h3 { color: var(--mostaza); font-size: 1.8rem; margin-bottom: 1.5rem; }
+        .bonus-item { margin-bottom: 1.2rem; padding-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .bonus-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .bonus-item h4 { font-size: 1rem; margin-bottom: 0.2rem; display: flex; align-items: center; gap: 0.5rem; }
+        .bonus-item p { font-size: 0.85rem; margin-bottom: 0; color: rgba(255,255,255,0.8); }
+
+        /* FAQ SECTION CSS */
+        .faq-section { background-color: var(--offwhite); padding: 4rem 0; }
+        .faq-header { text-align: center; margin-bottom: 3rem; }
+        .faq-header h2 { font-size: 2.5rem; }
+        .faq-container { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+        .faq-item { background: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-soft); border: 1px solid rgba(101, 139, 169, 0.1); overflow: hidden; transition: var(--transition); }
+        .faq-item:hover { box-shadow: var(--shadow-strong); border-color: var(--mostaza); }
+        .faq-item summary { padding: 1.5rem 2rem; font-family: var(--font-title); font-weight: 600; font-size: 1.2rem; color: var(--marino); cursor: pointer; list-style: none; position: relative; outline: none; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; position: absolute; right: 2rem; top: 1.5rem; font-size: 1.8rem; color: var(--mostaza); line-height: 1; font-weight: 400; transition: transform 0.3s ease; }
+        .faq-item[open] summary::after { content: '−'; color: var(--marron); transform: rotate(180deg); }
+        .faq-content { padding: 0 2rem 1.5rem 2rem; font-size: 1.05rem; color: var(--pizarra); line-height: 1.6; }
+
+        /* PRECIO */
+        .pricing-section { text-align: center; max-width: 800px; margin: 0 auto 5rem auto; background: var(--offwhite); padding: 3rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); border: 1px solid rgba(101, 139, 169, 0.2); }
+        .total-value { text-decoration: line-through; color: var(--pizarra); font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .actual-price { font-size: 3.5rem; font-weight: 700; color: var(--marino); font-family: var(--font-title); line-height: 1; margin-bottom: 2rem; }
+        .actual-price span { font-size: 1.3rem; color: var(--marron); }
+
+        @media (max-width: 1024px) {
+            .hero { flex-direction: column; }
+            .hero-content { padding: 4rem 5% 2rem 5%; align-items: center; text-align: center; }
+            .hero-visuals { width: 100%; height: 50vh; }
+            .hero-bg-img { border-bottom-left-radius: 0; }
+            .css-bundle { left: 50%; transform: translateX(-50%) rotate(0); bottom: -40px; width: 85%; }
+            .css-bundle:hover { transform: translateX(-50%) translateY(-5px); }
+            .pizza-layout, .stack-grid, .staggered-grid { grid-template-columns: 1fr; }
+            .staggered-card:nth-child(2) { transform: translateY(0); }
+            .pizza-section { padding: 3rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <span class="tag">Para mujeres recién divorciadas</span>
+            <h1>Tu nueva etapa no tiene que ser un caos.<br> Empezá a respirar.</h1>
+            <p>Ya pasaste por lo más difícil. Ahora toca organizarte a tu propio ritmo. Nuevo Rumbo es un botiquín digital que acomoda tus finanzas, protege tu tiempo y te devuelve la paz mental.</p>
+            <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                <a href="https://pay.hotmart.com/J107949751P" class="btn">Empezar a ordenar mi vida</a>
+                <span style="font-size: 0.85rem; color: var(--pizarra); font-weight: 500;">🔒 Pago seguro vía Hotmart • Acceso inmediato</span>
+            </div>
+        </div>
+        <div class="hero-visuals">
+            <img 
+            src="../public/image_6adab0.png" 
+            alt="Mujer relajada en su escritorio" 
+            class="hero-bg-img">
+            
+            <div class="css-bundle">
+                <div class="css-tablet">
+                    <div class="css-tablet-header">
+                        <span>Decodificador del Decreto</span>
+                        <span style="background: rgba(230,191,104,0.3); padding: 0.2rem 0.6rem; border-radius: 4px;">60% Completo</span>
+                    </div>
+                    <div class="css-tablet-body">
+                        <div class="css-bar"><div class="css-bar-fill"></div></div>
+                        <div class="css-task">
+                            <div class="css-check active"></div>
+                            <div class="css-line"></div>
+                        </div>
+                        <div class="css-task">
+                            <div class="css-check"></div>
+                            <div class="css-line" style="width: 50%;"></div>
+                        </div>
+                        <div class="css-task">
+                            <div class="css-check"></div>
+                            <div class="css-line" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="css-mobile">
+                    <div class="css-mobile-header">Chat Coparental</div>
+                    <div class="css-chat">
+                        <div class="css-bubble-left">Línea de mensaje conflictivo recibido del ex...</div>
+                        <div class="css-bubble-right">Guión neutral Grey-Rock aplicado con éxito.</div>
+                        <div class="css-bubble-left">Nuevo intento de discusión por gastos...</div>
+                        <div class="css-bubble-right">Respuesta pre-diseñada estableciendo límites.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="agitation">
+        <div class="container">
+            <div class="agitation-header">
+                <span class="tag">Soltá la mochila</span>
+                <h2>No tenés que tener todo resuelto hoy. Solo necesitás un sistema.</h2>
+                <p>Sabemos que las noches son largas cuando la cabeza no para de sacar cuentas o de repasar esa última charla con tu ex. Es hora de dejar de memorizar pendientes y transferir todo ese peso a herramientas que trabajen por vos.</p>
+            </div>
+            
+            <div class="staggered-grid">
+                <div class="staggered-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3>Paz en tus finanzas</h3>
+                    <p>Vas a tener un mapa claro para separar deudas, armar tu nuevo presupuesto y saber exactamente con cuánto contás.</p>
+                </div>
+                <div class="staggered-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </div>
+                    <h3>Mensajes sin estrés</h3>
+                    <p>Con reglas escritas y plantillas de respuestas, vas a poder gestionar la rutina de los chicos desde la calma absoluta.</p>
+                </div>
+                <div class="staggered-card">
+                    <div class="icon-box">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h3>Tu casa, tu refugio</h3>
+                    <p>Vas a saber qué arreglar hoy y qué dejar para mañana, gestionando reparaciones de forma inteligente y segura.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pizza-section">
+        <div class="pizza-layout">
+            <div class="pizza-text">
+                <h2>La <span class="highlight">Pizza</span> de la Tranquilidad</h2>
+                <p>Por lo que te cuesta pedir delivery un viernes a la noche para descansar, te llevás un sistema que te ahorra meses de estrés legal.</p>
+                <p><strong>Cada porción de esta inversión te devuelve tiempo libre:</strong></p>
+                <img 
+                src="../public/pizza-artesanal-porciones.png" 
+                alt="Pizza artesanal" style="margin-top: 2rem; border-radius: var(--radius-lg); opacity: 0.9;">
+            </div>
+            <div class="pizza-grid">
+                <div class="slice-card" style="border-left-color: var(--marino);">
+                    <h4>1. Porción Financiera</h4>
+                    <p>Frená deudas que no son tuyas y blindá tu flujo de caja en 90 días.</p>
+                </div>
+                <div class="slice-card" style="border-left-color: var(--pizarra);">
+                    <h4>2. Porción Coparental</h4>
+                    <p>Frená la toxicidad con calendarios claros y guiones de respuesta.</p>
+                </div>
+                <div class="slice-card" style="border-left-color: var(--mostaza);">
+                    <h4>3. Porción Hogar</h4>
+                    <p>Ordená qué arreglar y compará presupuestos de mantenimiento con seguridad.</p>
+                </div>
+                <div class="slice-card" style="border-left-color: var(--marron);">
+                    <h4>4. Porción Mental</h4>
+                    <p>Bajá todo a nuestras matrices y dejá que el sistema recuerde por vos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container offer-stack">
+        <div class="text-center" style="margin-bottom: 4rem;">
+            <span class="tag">Qué vas a recibir hoy</span>
+            <h2 style="font-size: 2.8rem;">Herramientas digitales listas <br>para que las uses desde el sillón.</h2>
+        </div>
+
+        <div class="stack-grid">
+            <div class="core-features">
+                <div class="feature-item">
+                    <div class="feature-icon">1</div>
+                    <div>
+                        <h3>Decodificador del Decreto Legal</h3>
+                        <p>Una matriz interactiva que traduce ese PDF incomprensible del abogado en un calendario de tareas sencillas.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">2</div>
+                    <div>
+                        <h3>Sistema Coparental Pacífico</h3>
+                        <p>Más de 30 guiones de mensajes neutrales para responder sobre permisos o gastos sin enojarte.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">3</div>
+                    <div>
+                        <h3>Checklist de Transición Financiera</h3>
+                        <p>El paso a paso gentil para tus primeros 90 días sola: cambio de titularidades, seguros y contraseñas.</p>
+                    </div>
+                </div>
+                <img src="../public/mujer-cafe.png" alt="Mujer feliz tomando café" style="border-radius: var(--radius-lg); margin-top: 2rem;">
+            </div>
+
+            <div class="bonuses-box">
+                <h3>+ 4 Bonos Exclusivos</h3>
+                <div class="bonus-item">
+                    <h4>🎁 Bono 1: Prompts IA</h4>
+                    <p>Que ChatGPT redacte correos formales o arme un menú económico por vos.</p>
+                </div>
+                <div class="bonus-item">
+                    <h4>🎁 Bono 2: Matriz "Carga Menos"</h4>
+                    <p>Decidí en paz qué vender, donar o guardar del patrimonio compartido.</p>
+                </div>
+                <div class="bonus-item">
+                    <h4>🎁 Bono 3: Conexión Segura</h4>
+                    <p>Guía anti-estafas para cuando decidas que estás lista para volver a socializar.</p>
+                </div>
+                <div class="bonus-item">
+                    <h4>🎁 Bono 4: Tracker de Identidad</h4>
+                    <p>Un diario de 28 días para monitorear tu energía y tus "primeras veces" sola.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES (FAQ) -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="faq-header">
+                <span class="tag">Respuestas Claras</span>
+                <h2>Preguntas Frecuentes</h2>
+            </div>
+            <div class="faq-container">
+                
+                <details class="faq-item">
+                    <summary>¿Necesito conocimientos técnicos avanzados para usar estas plantillas?</summary>
+                    <div class="faq-content">
+                        Absolutamente no. Si sabés usar tu correo electrónico o escribir en un documento de Google, tenés todo lo necesario. Al hacer clic, las herramientas se copian automáticamente a tu cuenta y están listas para que las empieces a usar llenando los espacios en blanco.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Mi compra y el uso de estas herramientas son confidenciales?</summary>
+                    <div class="faq-content">
+                        100% confidencial. El cargo en tu tarjeta se procesa de forma encriptada a través de Hotmart. Además, al descargar las plantillas, se genera una copia privada en tu propio Google Drive. Nadie de nuestro equipo ni de tu entorno podrá ver la información que manejes allí. Es tu espacio seguro.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Tienen garantía de devolución?</summary>
+                    <div class="faq-content">
+                        Nuestra filosofía es clara: entregamos un valor masivo y desproporcionado. El costo de este producto es menor a lo que gastarías en una pizza un viernes por la noche, pero el valor de las herramientas, la estructura y los dolores de cabeza que te vas a ahorrar son incalculables. Un solo problema que logres evitar o disgusto que te ahorres gracias a estas herramientas ya paga con creces tu acceso. Por la naturaleza digital, copiable y de uso inmediato de estos archivos, no ofrecemos reembolsos por "cambio de opinión". La satisfacción está garantizada por la utilidad inmediata y real que tendrás en tus manos a los 5 minutos de ingresar.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Cómo recibo el acceso a Nuevo Rumbo y mis Bonos?</summary>
+                    <div class="faq-content">
+                        Inmediatamente después de confirmar tu pago seguro, recibirás un correo electrónico de Hotmart con tus datos de acceso. Podrás entrar a la plataforma y descargar tu PDF Maestro interactivo al instante, sin importar qué día o a qué hora sea.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>¿Puedo usar esto desde el celular?</summary>
+                    <div class="faq-content">
+                        Sí, los PDFs y las plantillas de Google se pueden abrir y utilizar perfectamente desde tu smartphone, aunque para mayor comodidad al escribir y organizar tus ideas (especialmente la matriz financiera), te recomendamos sentarte tranquila frente a una computadora o tablet.
+                    </div>
+                </details>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="pricing-section">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">La tranquilidad es tu mejor inversión.</h2>
+            <p style="margin-bottom: 2rem;">Todo el sistema "Nuevo Rumbo" + Los 4 Bonos Exclusivos</p>
+            
+            <div class="total-value">Valor real: $85.00 USD</div>
+            <div class="actual-price"><span>Llevalo hoy por</span> $17.90</div>
+            
+            <a href="https://pay.hotmart.com/J107949751P" class="btn">Quiero mi botiquín y los bonos</a>
+            <p style="margin-top: 1.5rem; font-size: 0.85rem; color: var(--pizarra);">🔒 Pago 100% seguro a través de Hotmart. Acceso de por vida.</p>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 4rem 0 2rem 0; background: var(--offwhite); color: var(--pizarra); font-size: 0.85rem; border-top: 1px solid rgba(101, 139, 169, 0.2);">
+        <div class="container" style="padding: 0; max-width: 800px; margin: 0 auto;">
+            
+            <p style="margin-bottom: 1.5rem;">Las plantillas y herramientas de Nuevo Rumbo están diseñadas para fines organizativos. No constituyen asesoramiento legal, financiero o psicológico profesional. Consulte siempre con un profesional matriculado en su jurisdicción para decisiones legales.</p>
+            
+            <p style="margin-bottom: 2rem; font-size: 0.75rem; opacity: 0.8;">Este sitio no es parte del sitio web de Facebook ni de Meta Platforms, Inc. Además, este sitio NO está respaldado por Facebook de ninguna manera. FACEBOOK es una marca comercial de META PLATFORMS, Inc.</p>
+            
+            <div style="display: flex; justify-content: center; gap: 2rem; font-size: 0.85rem; font-weight: 600;">
+                <a href="https://ckdigitales.com/terminos-condiciones" target="_blank" style="color: var(--marino); text-decoration: none; transition: var(--transition);">Términos y Condiciones</a>
+                <a href="https://ckdigitales.com/politicas-privacidad" target="_blank" style="color: var(--marino); text-decoration: none; transition: var(--transition);">Políticas de Privacidad</a>
+            </div>
+
+            <p style="margin-top: 2.5rem; font-size: 0.75rem; opacity: 0.6;">&copy; 2026 Nuevo Rumbo. Todos los derechos reservados.</p>
+            
+        </div>
+    </footer>
+
+    <!-- AVISO DE COOKIES -->
+    <div id="cookie-banner" class="cookie-banner">
+        <div class="cookie-content">
+            <p>Utilizamos cookies propias y de terceros (como el Píxel de Meta) para mejorar tu experiencia y mostrarte contenido relevante. Al continuar navegando, aceptás nuestra 
+                <a href="https://ckdigitales.com/politicas-privacidad" target="_blank">Política de Privacidad y Cookies</a>.
+            </p>
+            <button id="accept-cookies" class="btn-cookie">Aceptar y continuar</button>
+        </div>
+    </div>
+
+    <style>
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--marino);
+            color: var(--offwhite);
+            padding: 1.5rem;
+            z-index: 9999;
+            box-shadow: 0 -10px 25px rgba(0,0,0,0.1);
+            display: none; /* Oculto por defecto hasta que JS verifique */
+        }
+        .cookie-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .cookie-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .cookie-content a {
+            color: var(--mostaza);
+            text-decoration: underline;
+        }
+        .btn-cookie {
+            background-color: var(--mostaza);
+            color: var(--marino);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-weight: 700;
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+        }
+        .btn-cookie:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(230, 191, 104, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            .btn-cookie {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const cookieBanner = document.getElementById("cookie-banner");
+            const acceptButton = document.getElementById("accept-cookies");
+
+            // Si la cookie no está aceptada, mostramos el banner
+            if (!localStorage.getItem("cookiesAceptadas")) {
+                cookieBanner.style.display = "block";
+            }
+
+            // Al hacer clic en aceptar, guardamos en memoria y ocultamos el banner
+            acceptButton.addEventListener("click", function() {
+                localStorage.setItem("cookiesAceptadas", "true");
+                cookieBanner.style.display = "none";
+            });
+        });
+    </script>
+    <!-- FIN AVISO DE COOKIES -->
+
+</body>
+</html>
